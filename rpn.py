@@ -39,28 +39,31 @@ class Calculator(Frame):
 			if char == '=':
 				btn = button(opsF, LEFT, char)
 
-				btn.bind('<ButtonRelease - 1>', lambda e, s=self, w = display:self.calculate(w))
+				btn.bind('<ButtonRelease - 1>', lambda e, s=self, w = display:calculate_helper(w))
 			else:
 				btn = button(opsF, LEFT, char, lambda w = display, s = '%s' %char:w.set(w.get()+s))
 		
 		clearF=frame(self,BOTTOM)
 		button(clearF, LEFT, 'clear', lambda w= display:w.set(''))
 	
-	def calculate(self, myarg1):
-		stack = list()
-		for token in myarg1.get().split():
-			try:
-				stack.append(int(token))
-			except ValueError:
-				arg2 = stack.pop()
-				arg1 = stack.pop()
-				function = operators[token]
-				result = function(arg1,arg2)
-				stack.append(result)
-			print(stack)
-		if len(stack) !=1:
-			raise TypeError
-		myarg1.set(stack.pop())
+def calculate_helper(myarg):
+	myarg.set(calculate(myarg.get()))
+
+def calculate(myarg1):
+	stack = list()
+	for token in myarg1.split():
+		try:
+			stack.append(int(token))
+		except ValueError:
+			arg2 = stack.pop()
+			arg1 = stack.pop()
+			function = operators[token]
+			result = function(arg1,arg2)
+			stack.append(result)
+		print(stack)
+	if len(stack) !=1:
+		raise TypeError
+	return stack.pop()
 
 def meaningless():
 	print("This is meaningless")
