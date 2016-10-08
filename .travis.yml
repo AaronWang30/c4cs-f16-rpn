@@ -1,4 +1,10 @@
 language: python
-python: 3.5
-script: make test
-after_success: coveralls
+python:
+ - 3.5
+install:
+ - pip install coveralls
+script:
+ - make test
+ - coverage run rpn.py test
+after_success: 
+ - coveralls
