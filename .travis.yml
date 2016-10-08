@@ -5,6 +5,6 @@ install:
  - pip install coveralls
 script:
  - make test
- - coverage run rpn.py test
+ - coverage run make test
 after_success: 
  - coveralls
