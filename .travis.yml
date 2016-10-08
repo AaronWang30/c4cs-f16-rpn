@@ -5,6 +5,6 @@ install:
  - pip install coveralls
 script:
  - make test
- - nosetests -v --with-coverage --cover-package=PACKAGE
+ - nosetests -v --with-coverage --cover-package=c4cs-f16-rpn
 after_success: 
  - coveralls
