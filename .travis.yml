@@ -5,6 +5,6 @@ install:
  - pip install coveralls
 script:
  - make test
- - coverage run make test
+ - nosetests -v --with-coverage --cover-package=PACKAGE
 after_success: 
  - coveralls
