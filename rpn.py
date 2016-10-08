@@ -8,6 +8,9 @@ operators = {
 	'^': operator.pow,
 
 }
+def meaningless():
+	print("This is meaningless")
+	print("In order to test coveralls")
 def calculate(myarg1):
 	stack = list()
 	for token in myarg1.split():
